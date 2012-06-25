@@ -1,4 +1,5 @@
 Hier ist mein ruby script für MSO Intern.
-Es kann sich anmelden, die Kurse und Vertretungsstunden auslesen.
+Es kann sich anmelden, die Kurse und Vertretungsstunden auslesen
+Bisher leuft es leider nur unter ruby 1.9.2 Eine 1.9.3 'fähige' Version mach ich noch.
 
 Viel Spaß
