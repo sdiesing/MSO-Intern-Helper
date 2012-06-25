@@ -28,7 +28,7 @@ module RailsHelper
   # on sucsees returns the session_id cookie as string
   def login(url, username, password)
     token = get_token(url)
-    response = https_post url, "authenticity_token=#{token[0]}&user[login]=#{username}&user[password]=#{password}", token[1]
+    response = https_post url, "authenticity_token=#{}&user[login]=#{username}&user[password]=#{password}", token[0], token[1]
     raise "No redirect occured: server did not accept the request." unless response[0]["status"] == "302"
   
     return response[0]['set-cookie'].split(';')[0]
@@ -47,12 +47,13 @@ module RailsHelper
 
   # send an https post request with data
   # returns metainfo and the body as an array
-  def https_post(url, data, cookie = "")
+  def https_post(url, data, token = nil, cookie = "")
     uri = URI.parse url
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
-  
-    resp, body = http.request_post uri.path, data, 'User-Agent' => "Mozilla/5.0 RailsAppHelper", 'Cookie' => cookie
+    token = get_token(url,cookie).first unless token
+    
+    resp, body = http.request_post uri.path, data + "&authenticity_token=#{token}", 'User-Agent' => "Mozilla/5.0 RailsAppHelper", 'Cookie' => cookie
     return [resp, body]
   end
   

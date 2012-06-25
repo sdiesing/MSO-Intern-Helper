@@ -15,7 +15,7 @@ PASSWORD = ""
 mso = MSOIntern.new USERNAME, PASSWORD 
 
 # get the coverlessons
-p mso.coverlessons.map{|e| e.join("\t")}
+puts mso.coverlessons.map{|e| e.join("\t")}
 
 # get your courses
 puts mso.courses.map{|e| e.join("\t")}

@@ -14,6 +14,7 @@ require_relative 'RailsHelper'
 APP_URL         = "https://intern.marienschule.com/magic/"
 LOGIN_URL       = APP_URL + "users/sign_in"
 COURSES_URL     = APP_URL + "courses/"
+EDIT_URL        = APP_URL + "home/edit"
 
 class MSOIntern
   include RailsHelper
